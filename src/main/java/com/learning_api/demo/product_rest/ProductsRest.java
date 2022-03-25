@@ -1,22 +1,27 @@
 package com.learning_api.demo.product_rest;
 
+import com.learning_api.demo.dao.ProductsDAO;
 import com.learning_api.demo.entitys.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController // Es un restapi
 @RequestMapping("products") //url en la que se expondran los servivios
 public class ProductsRest {
 
+    @Autowired
+    private ProductsDAO productsDAO;
+
     @GetMapping
-    public ResponseEntity<Product> getProduct(){
-        Product product = new Product();
-        product.setId(1L);
-        product.setName("Producto 1");
-        return ResponseEntity.ok(product); //Regresa status 200 que todo salio bien
+    public ResponseEntity<List<Product>> getProduct(){
+        List<Product>products = productsDAO.findAll();
+        return ResponseEntity.ok(products);
 
     }
 
