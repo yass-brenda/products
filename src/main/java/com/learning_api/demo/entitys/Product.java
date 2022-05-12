@@ -2,6 +2,7 @@ package com.learning_api.demo.entitys;
 
 import javax.persistence.*;
 
+
 @Entity  //Indicamos que es una entidad de base de datos
 @Table(name = "products") // Indicamos en que tabla de la BD se guardará
 public class Product {
